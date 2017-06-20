@@ -8,7 +8,9 @@ require('dotenv').config();
 const app = express();
 
 const PORT = process.env.PORT;
+console.log(PORT, 'this is port');
 const MONGOURI = process.env.MONGO_URI;
+console.log(MONGOURI, 'mongo');
 let db;
 MongoClient.connect(MONGOURI, (err, database) => {
   if (err) return console.log(err);
