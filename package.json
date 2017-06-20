@@ -19,6 +19,9 @@
   "homepage": "https://github.com/dweill/mvp#readme",
   "dependencies": {
     "angular": "^1.6.4",
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
     "express": "^4.15.3",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.29"
@@ -27,6 +30,7 @@
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-node": "^5.0.0"
+    "eslint-plugin-node": "^5.0.0",
+    "nodemon": "^1.11.0"
   }
 }
