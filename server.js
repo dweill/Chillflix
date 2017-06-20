@@ -8,9 +8,7 @@ require('dotenv').config();
 const app = express();
 
 const PORT = process.env.PORT;
-console.log(PORT, 'this is port');
 const MONGOURI = process.env.MONGO_URI;
-console.log(MONGOURI, 'mongo');
 let db;
 MongoClient.connect(MONGOURI, (err, database) => {
   if (err) return console.log(err);
@@ -19,24 +17,27 @@ MongoClient.connect(MONGOURI, (err, database) => {
     console.log('I am working');
   });
 });
-
+app.use(express.static('/client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/+json' }));
 
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
-});
-app.get('/app.js', (req, res) => {
-  res.sendFile(path.join(__dirname, '/app.js'));
+  res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 app.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, '/signup.html'));
+  res.sendFile(path.join(__dirname, '/client/signup.html'));
+});
+app.get('/client/components/app.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/components/app.js'));
+});
+app.get('/client/services/random.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/services/random.js'));
 });
 
 app.post('/users', (req, res) => {
   console.log(req.body, 'hey');
-  db.collection('users').save(req.body, (err, results) => {
+  db.collection('users').save(req.body, (err) => {
     if (err) return console.log(err);
     console.log('Account Created!');
     res.redirect('/');
