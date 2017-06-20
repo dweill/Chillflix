@@ -27,6 +27,9 @@ app.use(bodyParser.json({ type: 'application/+json' }));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/index.html'));
 });
+app.get('/app.js', (req, res) => {
+  res.sendFile(path.join(__dirname, '/app.js'));
+});
 app.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '/signup.html'));
 });
