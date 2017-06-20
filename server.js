@@ -31,9 +31,9 @@ app.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '/signup.html'));
 });
 
-app.post('/signup', (req, res) => {
+app.post('/users', (req, res) => {
   console.log(req.body, 'hey');
-  db.connect('users').save(req.body, (err, results) => {
+  db.collection('users').save(req.body, (err, results) => {
     if (err) return console.log(err);
     console.log('Account Created!');
     res.redirect('/');
