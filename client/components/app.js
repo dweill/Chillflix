@@ -20,7 +20,6 @@ app.controller('MovieCTRL', function($scope, Random) {
     Random.search($scope.movies[$scope.rando()].title, (data) => {
       $scope.current = data.data.show_title;
       $scope.image = data.data.poster;
-      console.log($scope.image);
     });
   };
   $scope.search();

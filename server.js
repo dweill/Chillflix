@@ -36,6 +36,9 @@ const userSchema = mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 app.get('/', (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/signup');
+  }
   res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 app.get('/signup', (req, res) => {
@@ -48,14 +51,25 @@ app.get('/client/services/random.js', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/services/random.js'));
 });
 
-app.post('/users', (req, res) => {
+app.post('/signup', (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
-  let user = new User({ username, password, unwatchable: [] })
-  .save((err) => {
-    if (err) return console.error(err);
-    console.log('account created!');
-    res.redirect('/');
+  User.find({ username, password }).exec((err, found) => {
+    if (found.length > 0) {
+      console.log('butt');
+      if (found[0].username === username) {
+        console.log(found, 'found');
+        req.session.user = username;
+        res.redirect('/');
+      }
+    } else {
+    let user = new User({ username, password, unwatchable: [] })
+    .save((err) => {
+      if (err) return console.error(err);
+      console.log('account created!');
+      req.session.user = username;
+      res.redirect('/');
+    });
+    }
   });
-  
 });
