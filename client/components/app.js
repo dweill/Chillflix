@@ -1,6 +1,8 @@
 const app = angular.module('app', []);
 app.controller('MovieCTRL', function($scope, $http, Random) {
   $scope.clicked = false;
+  // $scope.userMovies = [];
+  // $scope.unwatch =[];
   $scope.movies = [
     { title: 'The Cable Guy' },
     { title: 'Dumb and Dumber' },
@@ -12,6 +14,15 @@ app.controller('MovieCTRL', function($scope, $http, Random) {
     { title: 'Johnny Mnemonic' },
     { title: 'Zodiac' },
   ];
+  // $scope.unwatch.push($http.get('/user').then((data) => {
+  //   console.log(data, 'data');
+  // }));
+  // $scope.movieFitler = $scope.movies.filter((val) => {
+  //   if (!$scope.unwatch.includes(val)) {
+  //     $scope.userMovies.push(val);
+  //     console.log($scope.userMovies);
+  //   }
+  // });
   $scope.rando = () => {
     let i = Math.floor(Math.random() * ($scope.movies.length));
     return i;
