@@ -22,6 +22,12 @@ app.controller('MovieCTRL', function($scope, $http, Random) {
       $scope.image = data.data.poster;
     });
   };
-  $scope.search();
+  // $scope.search();
+  $scope.update = () => {
+    console.log('hit');
+    Random.update($scope.current, (data) => {
+      console.log(data, 'its me');
+    });
+  };
 });
 

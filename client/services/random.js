@@ -12,5 +12,17 @@ angular.module('app')
         console.error(error);
       });
     },
+    update: (query, callback) => {
+      console.log(query, 'q');
+      $http.put(`/hate/${query}`, {
+        params: {
+          unwatchable: query,
+        },
+      }).then((data) => {
+        callback(data);
+      }, (err) => {
+        console.error(err);
+      });
+    },
   };
 });

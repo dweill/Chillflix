@@ -13,15 +13,15 @@
   <div>
     <div ng-init="current = ''"></div>
     <div ng-init="image"></div>
-      <button ng-click="clicked = true", type="submit">Show Me What To Watch</button>
-        <div ng-show="clicked">{{current}}</div>
+      <button ng-click="search()" type="submit">Show Me What To Watch</button>
+        <div>{{current}}</div>
         <div>
-          <img ng-show="clicked", ng-src={{image}}>
+          <img ng-src={{image}}>
           </div>
       </div>
       <div>
         <form>
-          <button ng-click="search()", type="submit">I hate that movie</button>
+          <button ng-click="update()", type="submit">I hate that movie</button>
         </form>
       </div>
   </div>    

@@ -74,8 +74,14 @@ app.post('/signup', (req, res) => {
     }
   });
 });
+app.put('/hate*', (req, res) => {
+  if(req.session.user) {
+    User.find({ username: req.session.user }).exec((err, data) => {
+      if (err) return console.error(error);
+      let id = data[0]._id;
+      //update watchables
+    });
 
-app.put('/hate', (req, res) => {
-  console.log(req.body);
-  res.redirect('/');
+  }
 });
+
