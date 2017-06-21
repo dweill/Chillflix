@@ -10,16 +10,23 @@
   <br>
   <div ng-controller="MovieCTRL">
   <div>
-    <button type="submit" ng-click=search()>Show Me What To Watch</button>
-    <div ng-init="current = ''">{{}}</div>
-  </div>
-    <span>total movies: {{movies.length}}</span>
+    <div ng-init="current = ''"></div>
+    <div ng-init="image"></div>
+      <button ng-click="clicked = true", type="submit">Show Me What To Watch</button>
+        <div ng-show="clicked">{{current}}</div>
+        <div>
+          <img ng-show="clicked", ng-src={{image}}>
+          </div>
+      </div>
+      <div>
+        <button ng-click="search()", type="submit">I hate that movie</button>
+      </div>
   </div>    
   <br>
-  <div>
+  <!--<div>
     <form action="/unwatchable" method="POST"></form>
     <button type="submit">Unwatchble!</button>
-  </div>
+  </div>-->
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js'></script>
   <script src="/client/components/app.js"></script>
   <script src="client/services/random.js"></script>

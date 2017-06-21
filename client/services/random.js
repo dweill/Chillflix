@@ -1,7 +1,7 @@
 angular.module('app')
 .service('Random', function($window, $http) {
   return {
-    search: function(query, callback) {
+    search: (query, callback) => {
       $http.get('//netflixroulette.net/api/api.php?', {
         params: {
           title: query,
