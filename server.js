@@ -50,15 +50,16 @@ app.get('/client/components/app.js', (req, res) => {
 app.get('/client/services/random.js', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/services/random.js'));
 });
+app.get('/styles.css', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/styles.css'));
+});
 
 app.post('/signup', (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
   User.find({ username, password }).exec((err, found) => {
     if (found.length > 0) {
-      console.log('butt');
       if (found[0].username === username) {
-        console.log(found, 'found');
         req.session.user = username;
         res.redirect('/');
       }
@@ -72,4 +73,9 @@ app.post('/signup', (req, res) => {
     });
     }
   });
+});
+
+app.put('/hate', (req, res) => {
+  console.log(req.body);
+  res.redirect('/');
 });

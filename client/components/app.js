@@ -1,5 +1,5 @@
 const app = angular.module('app', []);
-app.controller('MovieCTRL', function($scope, Random) {
+app.controller('MovieCTRL', function($scope, $http, Random) {
   $scope.clicked = false;
   $scope.movies = [
     { title: 'The Cable Guy' },

@@ -1,0 +1,14 @@
+body {
+  background-color: black;
+  color: red;
+  text-align: center;
+}
+h1 {
+  font-size: 100px;
+}
+img {
+  border: solid white;
+}
+div {
+  font-size: 50px;
+}
