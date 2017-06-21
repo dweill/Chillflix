@@ -79,7 +79,10 @@ app.put('/hate*', (req, res) => {
     User.find({ username: req.session.user }).exec((err, data) => {
       if (err) return console.error(error);
       let id = data[0]._id;
-      //update watchables
+      let currentUnwatchable = data[0].unwatchable;
+      User.update({ _id: id }, { $set: { unwatchable: `${currentUnwatchable}   ${req.url}` } }, () => {
+        res.send(200);
+      });
     });
 
   }
