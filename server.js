@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -18,6 +19,7 @@ db.once('open', () => {
     console.log('Listening on 3000');
   });
 });
+app.use(cors());
 app.use(express.static('/client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/+json' }));
@@ -27,6 +29,7 @@ app.use(session({
     maxAge: 60000,
   },
 }));
+
 
 const userSchema = mongoose.Schema({
   username: String,
