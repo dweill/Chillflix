@@ -90,11 +90,4 @@ app.put('/hate*', (req, res) => {
 
   }
 });
-// app.get('/user', (req, res) => {
-//   User.find({ username: req.session.user }).exec((err, data) => {
-//     let hate = data[0].currentUnwatchable;
-//     console.log(hate);
-//     res.send(hate);
-//   });
-// });
 

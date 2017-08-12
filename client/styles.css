@@ -5,10 +5,34 @@ body {
 }
 h1 {
   font-size: 100px;
+  margin: 5px;
 }
 img {
   border: solid white;
 }
 div {
   font-size: 50px;
+}
+.button, .choice, .hate  {
+  background-color: red;
+    border-radius: 60px;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+}
+.title {
+  font-family: Impact;
+  margin: 15px;
+  text-shadow: -2px 2px 5px white;
+}
+.choice {
+  background-color: #cc0000;
+}
+.hate {
+  background-color: #cc0000;
 }

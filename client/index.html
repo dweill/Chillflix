@@ -13,16 +13,12 @@
   <div>
     <div ng-init="current = ''"></div>
     <div ng-init="image"></div>
-      <button ng-click="search()" type="submit">Show Me What To Watch</button>
-        <div>{{current}}</div>
+      <button class="choice" ng-click="search()" type="submit">Show Me What To Watch</button>
+          <button class="hate" ng-click="update()", type="submit">I hate that movie</button>
+        <div class="title">{{current}}</div>
         <div>
           <img ng-src={{image}}>
           </div>
-      </div>
-      <div>
-        <form>
-          <button ng-click="update()", type="submit">I hate that movie</button>
-        </form>
       </div>
   </div>    
   <br>
