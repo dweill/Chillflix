@@ -32,7 +32,12 @@ div {
 }
 .choice {
   background-color: #cc0000;
+  width: 300px;
 }
 .hate {
   background-color: #cc0000;
+  width: 300px;
+}
+input {
+  margin: 5px;
 }

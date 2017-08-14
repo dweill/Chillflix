@@ -15,8 +15,8 @@
     <div ng-init="image"></div>
       <button class="choice" ng-click="search()" type="submit">Show Me What To Watch</button>
           <button class="hate" ng-click="update()", type="submit">I hate that movie</button>
-        <div class="title">{{current}}</div>
-        <div>
+        <div class="title" ng-if="current">{{current}}</div>
+        <div ng-if="image">
           <img ng-src={{image}}>
           </div>
       </div>
