@@ -24,6 +24,7 @@ div {
     display: inline-block;
     font-size: 20px;
     font-weight: bold;
+    width: 50%;
 }
 .title {
   font-family: Impact;
@@ -39,5 +40,19 @@ div {
   width: 300px;
 }
 input {
-  margin: 5px;
+  margin: 15px;
+  width: 50%;
+  height: 50px;
+  font-size: 45px;
+  text-align: center;
+}
+form {
+  background-color: grey;
+  width: 50%;
+  display: inline-block;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+h2 {
+  font-size: 50px;
 }
