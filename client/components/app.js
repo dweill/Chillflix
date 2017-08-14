@@ -1,6 +1,12 @@
 const app = angular.module('app', []);
 app.controller('MovieCTRL', function($scope, $http, Random) {
-  $scope.clicked = false;
+  $scope.getUser = () => {
+    Random.getUser((data) => {
+      $scope.user = data;
+      $scope.unwatchable = data.unwatchable;
+    });
+  };
+  $scope.getUser();
   $scope.movies = [
     { title: 'The Cable Guy' },
     { title: 'Dumb and Dumber' },
@@ -74,17 +80,34 @@ app.controller('MovieCTRL', function($scope, $http, Random) {
     let i = Math.floor(Math.random() * ($scope.movies.length));
     return i;
   };
-  $scope.search = () => {
+  $scope.search = async () => {
+    if ($scope.unwatchable.length >= $scope.movies.length) {
+      $scope.current = 'You Hate Everything';
+      $scope.image = null;
+      return;
+    }
     Random.search($scope.movies[$scope.rando()].title, (data) => {
-      $scope.current = data.data.show_title;
-      $scope.image = data.data.poster;
+      if ($scope.unwatchable.includes(data.data.show_title)) {
+        return $scope.search();
+      } else {
+        $scope.current = data.data.show_title;
+        $scope.image = data.data.poster;
+      }
     });
   };
-  $scope.update = () => {
-    console.log('hit');
-    Random.update($scope.current, (data) => {
-      console.log(data, 'its me');
-    });
+  $scope.update = async () => {
+    if ($scope.current === 'You Hate Everything') {
+      return;
+    }
+    if ($scope.unwatchable.indexOf($scope.current) > -1) {
+      $scope.search();
+    } else {
+      $scope.unwatchable.push($scope.current);
+      await Random.update($scope.current, (data) => {
+        console.log(data);
+      });
+      $scope.search();
+    }
   };
 });
 

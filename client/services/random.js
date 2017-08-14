@@ -13,15 +13,19 @@ angular.module('app')
       });
     },
     update: (query, callback) => {
-      console.log(query, 'q');
       $http.put(`/hate/${query}`, {
-        params: {
-          unwatchable: query,
+        config: {
+          data: query,
         },
       }).then((data) => {
         callback(data);
       }, (err) => {
         console.error(err);
+      });
+    },
+    getUser: (callback) => {
+      $http.get('/user').then((data) => {
+        callback(data.data[0]);
       });
     },
   };

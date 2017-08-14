@@ -60,17 +60,19 @@ app.get('/styles.css', (req, res) => {
 app.post('/signup', (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
-  User.find({ username, password }).exec((err, found) => {
+  User.find({ username }).exec((err, found) => {
+    console.log(found);
     if (found.length > 0) {
-      if (found[0].username === username) {
+      if (found[0].username === username && found[0].password === password) {
         req.session.user = username;
         res.redirect('/');
+      } else if (found[0].username === username && found[0].password !== password) {
+        res.redirect('/signup');
       }
     } else {
-    let user = new User({ username, password, unwatchable: [] })
-    .save((err) => {
-      if (err) return console.error(err);
-      console.log('account created!');
+      let user = new User({ username, password, unwatchable: [] })
+    .save((error) => {
+      if (error) return console.error(err);
       req.session.user = username;
       res.redirect('/');
     });
@@ -78,12 +80,12 @@ app.post('/signup', (req, res) => {
   });
 });
 app.put('/hate*', (req, res) => {
-  if(req.session.user) {
+  if (req.session.user) {
     User.find({ username: req.session.user }).exec((err, data) => {
-      if (err) return console.error(error);
+      if (err) return console.error(err);
       let id = data[0]._id;
       let currentUnwatchable = data[0].unwatchable;
-      User.update({ _id: id }, { $set: { unwatchable: `${currentUnwatchable}   ${req.url}` } }, () => {
+      User.update({ _id: id }, { $push: { unwatchable: `${req.params['0'].slice(1)}` } }, () => {
         res.send(200);
       });
     });
@@ -91,3 +93,9 @@ app.put('/hate*', (req, res) => {
   }
 });
 
+app.get('/user', (req, res) => {
+  User.find({ username: req.session.user }).exec((err, data) => {
+    if (err) return console.error(err);
+    res.send(data);
+  });
+});
