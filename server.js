@@ -16,7 +16,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', () => {
   return app.listen(PORT, () => {
-    console.log('Listening on 3000');
+    console.log(`Listening on ${PORT}`);
   });
 });
 app.use(cors());
